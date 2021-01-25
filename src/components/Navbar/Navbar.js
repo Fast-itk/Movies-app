@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {NavLink} from 'react-router-dom'
+import { SearchContext } from '../../context/search/searchContext'
+
 
 import classes from './Navbar.module.scss'
 
@@ -8,6 +10,13 @@ const cls = ['navbar-brand', classes.logo]
   
 
 const Navbar = () => {
+
+    const search = useContext(SearchContext)
+    const {searchMovies} = search
+    const {searchResults} = search.state
+
+    console.log(searchResults)
+
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -26,34 +35,21 @@ const Navbar = () => {
                             <NavLink className="nav-link" to="/about">Информация</NavLink>
                         </li>
                     </ul>
-                    <form className="offset-xl-4 col-xl-4 d-flex">
-                        <input className="form-control me-2 mr-2" type="search" placeholder="Введите название фильма" aria-label="Search"/>
-                        <button className="btn btn-primary text-light" type="submit">Поиск</button>
+                    <form className="offset-xl-4 col-xl-3 d-flex">
+
+                            <input 
+                                className="form-control me-2 mr-2" 
+                                type="search" 
+                                placeholder="Введите название фильма" 
+                                aria-label="Search"
+                                onChange={(event) => searchMovies(event.target.value)}
+                            />
+                            <button className="btn btn-primary text-light" type="submit">Поиск</button>
+
                     </form>
                 </div>
             </nav>
         </React.Fragment>
-
-        // <React.Fragment>
-        //     <nav className="navbar navbar-dark navbar-expand-lg bg-secondary container-fluid">
-        //         <div className={cls.join(' ')}>mve</div>
-        //         <ul className="navbar-nav">
-        //             <li className="navbar-item">
-        //                 <NavLink exact className="nav-link text-light" aria-current="page" to="/">Главная</NavLink>
-        //             </li>
-        //             <li className="nav-item">
-        //                 <NavLink className="nav-link text-light" to="/favorites">Избранное</NavLink>
-        //             </li>
-        //             <li className="nav-item">
-        //                 <NavLink className="nav-link text-light" to="/about">О нас</NavLink>
-        //             </li>
-        //         </ul>
-        //         <form className="offset-5 col-4 d-flex">
-        //             <input className="form-control me-2 mr-2" type="search" placeholder="Введите название фильма" aria-label="Search"/>
-        //             <button className="btn btn-primary text-light" type="submit">Поиск</button>
-        //         </form>
-        //     </nav>
-        // </React.Fragment>
        
     )
 }
