@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+
+import HomePage from './pages/HomePage'
+import DetailPage from './pages/DetailPage'
+import FavoritesPage from './pages/FavoritesPage'
+import AboutPage from './pages/AboutPage'
+import Layout from './hoc/Layout'
+import RandomState from './context/random/randomState'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <RandomState>
+      <BrowserRouter>
+        <Layout>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/favorites" exact component={FavoritesPage} />
+            <Route path="/about" exact component={AboutPage} />
+            <Route path="/detail/:id" exact component={DetailPage} />
+          </Switch>
+        </Layout>
+      </BrowserRouter>
+    </RandomState>
+    
+  )
+      
 }
 
 export default App;

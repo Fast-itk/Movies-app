@@ -1,0 +1,17 @@
+.cardWidth {
+    max-width: 900px;
+    transition: 1s;
+}
+
+.show {
+    animation: show .7s ease-out;
+}
+
+@keyframes show {
+    from { 
+        opacity: 0;
+    }
+    to { 
+        opacity: 1; 
+    }
+}

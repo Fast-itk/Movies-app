@@ -1,0 +1,2 @@
+export const TOGGLE_RANDOM_LOADER = 'TOGGLE_RANDOM_LOADER'
+export const SET_DATA = 'SET_DATA'
