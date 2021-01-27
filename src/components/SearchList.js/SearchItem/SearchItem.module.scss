@@ -1,0 +1,30 @@
+.cardItem {
+    max-width: 100%;
+    max-height: 200px;
+
+    transition: .3s;
+
+    &:hover {
+        // transform: scale(1.03);
+        opacity: .85;
+    }
+}
+
+.linkItem {
+    position: relative;
+    overflow: hidden;
+
+    z-index: 100;
+}
+
+.fadeIn {
+    animation: show .7s;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
