@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import { RandomContext } from '../../../context/random/randomContext'
 import cls from './RandomMovieCard.module.scss'
@@ -7,7 +7,16 @@ import cls from './RandomMovieCard.module.scss'
 const RandomMovieCard = () => {
 
     const random = useContext(RandomContext)
-    const {title, genres, overview, poster_path} = random.state.randomMovie
+    const {title, genres, overview, poster_path, id} = random.state.randomMovie
+
+    const genresList = genres.map((genre, i) => {
+        return (
+            <span
+                key={i}
+                className="badge bg-secondary text-capitalize text-light m-1 p-2"
+            >{genre.name}</span>
+        )
+    })
 
     return (
         <div className={['card', 'mb-3', 'shadow', cls.cardWidth, cls.show].join(' ')}>
@@ -20,16 +29,9 @@ const RandomMovieCard = () => {
                         <h4 className="card-title">{title}</h4>
                         <p className="card-text">{overview}</p>
                         <p><strong>Жанры</strong>:{
-                        genres ? genres.map((genre, i) => {
-                            return (
-                                <span
-                                    key={i}
-                                    className="badge bg-secondary text-capitalize text-light m-1 p-2"
-                                >{genre.name}</span>
-                            )
-                        }) : null}</p>
+                        genres ? genresList : null}</p>
                         <div>
-                            <p><NavLink className="text-secondary" to="/detail/:id">Подробнее...</NavLink></p>
+                            <p><Link className="text-secondary" to={`/detail/${id}`}>Подробнее...</Link></p>
                         </div>
                     </div>
                 </div>

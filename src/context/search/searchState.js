@@ -4,7 +4,7 @@ import useFetch from '../../hooks/fetch.hook'
 import keys from '../../config/keys'
 import { SearchContext } from './searchContext'
 import { SearchReducer } from './searchReducer'
-import { CLEAR_SEARCH_VALUE, SEARCH_MOVIES, SEARCH_VALUE, TOGGLE_SEARCH_LOADER } from '../types/types'
+import { CLEAR_SEARCH_VALUE, SEARCH_MOVIES, SEARCH_VALUE, TOGGLE_LOADER } from '../types/types'
 
 const API_KEY = keys.API_KEY
 
@@ -24,7 +24,7 @@ const SearchState = ({ children }) => {
 
     const searchRequest = value => dispatch({type: SEARCH_VALUE, value})
 
-    const setLoading = active => dispatch({type: TOGGLE_SEARCH_LOADER, active})
+    const setLoading = active => dispatch({type: TOGGLE_LOADER, active})
 
     const searchMovies = useCallback(async value => {
         try {
@@ -34,18 +34,19 @@ const SearchState = ({ children }) => {
             searchRequest(value)
 
             if (value) {
-                    const response = await request(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ru-RU&query=${value}&page=1&include_adult=false`)
+                const response = await request(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=ru-RU&query=${value}&page=1&include_adult=false`)
 
-                    response.results.forEach((movie) => {
-                        const result = {
-                            title: movie.title,
-                            poster: movie.poster_path
-                        }
-        
-                        data.push(result)
-                    })
+                response.results.forEach((movie) => {
+                    const result = {
+                        title: movie.title,
+                        poster: movie.poster_path,
+                        id: movie.id
+                    }
+    
+                    data.push(result)
+                })
 
-                    saveData(data)
+                saveData(data)
             }
             
             return setLoading(false)

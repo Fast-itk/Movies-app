@@ -1,8 +1,7 @@
-// Random
-export const TOGGLE_RANDOM_LOADER = 'TOGGLE_RANDOM_LOADER'
+export const TOGGLE_LOADER = 'TOGGLE_LOADER'
 export const SET_DATA = 'SET_DATA'
-// Search
 export const SEARCH_MOVIES = 'SEARCH_MOVIES'
 export const SEARCH_VALUE = 'SEARCH_VALUE'
-export const TOGGLE_SEARCH_LOADER = 'TOGGLE_SEARCH_LOADER'
 export const CLEAR_SEARCH_VALUE = 'CLEAR_SEARCH_VALUE'
+export const GET_DETAIL_MOVIE = 'GET_DETAIL_MOVIE'
+export const GET_CAST = 'GET_CAST'

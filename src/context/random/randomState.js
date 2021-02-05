@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 
 import {RandomContext} from './randomContext'
 import {randomReducer} from './randomReducer' 
-import {TOGGLE_RANDOM_LOADER, SET_DATA} from '../types/types'
+import {TOGGLE_LOADER, SET_DATA} from '../types/types'
 import useFetch from '../../hooks/fetch.hook'
 import keys from '../../config/keys'
 
@@ -19,7 +19,7 @@ const RandomState = ({children}) => {
 
     const getRandomInRange = (min, max) => Math.floor(Math.random() * (max - min)) + min
 
-    const setLoading = active => dispatch({type: TOGGLE_RANDOM_LOADER, loading: active})
+    const setLoading = active => dispatch({type: TOGGLE_LOADER, loading: active})
 
     const setData = data => dispatch({type: SET_DATA, data})
 
@@ -31,11 +31,12 @@ const RandomState = ({children}) => {
             
             const response = await request(`https://api.themoviedb.org/3/movie/${getRandomInRange(5000, 50000)}?api_key=${API_KEY}&language=ru-RU`)
 
-            const {title, genres, overview, poster_path} = response
+            const {title, genres, overview, poster_path, id} = response
 
-            if (response.status === 404 || (!title ||!genres || !overview || !poster_path)) {
+            if (response.status === 404 || (!title || !genres || !overview || !poster_path || !id)) {
                 return getRandomMovie()
             }
+
 
             const overviewInArray = overview.split(' ')
 
@@ -44,10 +45,10 @@ const RandomState = ({children}) => {
                 refactOverview[refactOverview.length - 1] = refactOverview[refactOverview.length - 1] + '...'
                 const result = refactOverview.join(' ')
 
-                const data = {title, genres, overview: result, poster_path}
+                const data = {title, genres, overview: result, poster_path, id}
                 setData(data)
             } else {
-                const data = {title, genres, overview, poster_path}
+                const data = {title, genres, overview, poster_path, id}
                 setData(data)
             }
             setLoading(false)

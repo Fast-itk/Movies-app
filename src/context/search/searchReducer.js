@@ -1,4 +1,4 @@
-import { CLEAR_SEARCH_VALUE, SEARCH_MOVIES, SEARCH_VALUE, TOGGLE_SEARCH_LOADER } from "../types/types"
+import { CLEAR_SEARCH_VALUE, SEARCH_MOVIES, SEARCH_VALUE, TOGGLE_LOADER} from "../types/types"
 
 
 export const SearchReducer = (state, action) => {
@@ -11,7 +11,7 @@ export const SearchReducer = (state, action) => {
             ...state,
             searchValue: action.value
         } 
-        case TOGGLE_SEARCH_LOADER: return {
+        case TOGGLE_LOADER: return {
             ...state,
             loadingSearch: action.active
         }

@@ -14,6 +14,7 @@ const SearchList = ({results, loadingSearch, clear}) => {
                     key={index}
                     image={movie.poster}
                     title={movie.title}
+                    id={movie.id}
                     clear={clear}
                 />
             )

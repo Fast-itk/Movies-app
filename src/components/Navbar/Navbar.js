@@ -3,8 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 import { SearchContext } from '../../context/search/searchContext'
 import SearchList from '../SearchList.js/SearchList'
-
-
 import classes from './Navbar.module.scss'
 
 const cls = ['navbar-brand', classes.logo]
@@ -16,10 +14,6 @@ const Navbar = () => {
     const search = useContext(SearchContext)
     const {searchMovies, clearSearch} = search
     const {searchResults, searchValue, loadingSearch} = search.state
-
-    // console.log(search.state)
-
-    // console.log(searchValue.length)
 
     return (
         <React.Fragment>

@@ -22,8 +22,6 @@ const RandomMovie = () => {
                 <RandomMovieCard />
             : null}
             </div>
-            
-             {/* <h1>hello</h1> */}
         </>
     )
 }

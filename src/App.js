@@ -8,22 +8,25 @@ import AboutPage from './pages/AboutPage'
 import Layout from './hoc/Layout'
 import RandomState from './context/random/randomState'
 import SearchState from './context/search/searchState'
+import DetailState from './context/detail/detailState'
 
 function App() {
   return (
     <SearchState>
-      <RandomState>
-        <BrowserRouter>
-          <Layout>
-            <Switch>
-              <Route path="/" exact component={HomePage} />
-              <Route path="/favorites" exact component={FavoritesPage} />
-              <Route path="/about" exact component={AboutPage} />
-              <Route path="/detail/:id" exact component={DetailPage} />
-            </Switch>
-          </Layout>
-        </BrowserRouter>
-      </RandomState>
+      <DetailState>
+        <RandomState>
+          <BrowserRouter>
+            <Layout>
+              <Switch>
+                <Route path="/" exact component={HomePage} />
+                <Route path="/favorites" exact component={FavoritesPage} />
+                <Route path="/about" exact component={AboutPage} />
+                <Route path="/detail/:id" exact component={DetailPage} />
+              </Switch>
+            </Layout>
+          </BrowserRouter>
+        </RandomState>
+      </DetailState>
     </SearchState>
   )
       
