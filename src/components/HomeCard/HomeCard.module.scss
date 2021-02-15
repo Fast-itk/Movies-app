@@ -1,0 +1,10 @@
+.HomeCardImg {
+    z-index: 1;
+}
+
+@media screen and (max-width: 992px) {
+    .HomeCardImg {
+        max-width: 100%;
+        height: auto;
+    }
+}
