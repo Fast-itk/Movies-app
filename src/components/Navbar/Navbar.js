@@ -24,16 +24,24 @@ const Navbar = () => {
                 
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink exact className="nav-link" aria-current="page" to="/">Главная</NavLink>
+                            <NavLink 
+                                className="nav-link" 
+                                aria-current="page" 
+                                onClick={clearSearch} 
+                                exact
+                                to="/" 
+                            >Главная</NavLink>
                         </li>
+
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/favorites">Избранное</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/about">Информация</NavLink>
+                            <NavLink 
+                                className="nav-link" 
+                                to="/about" 
+                                onClick={clearSearch}
+                            >Информация</NavLink>
                         </li>
                     </ul>
-                    <form className="offset-xl-4 col-xl-3 d-flex">
+                    <form className="offset-xl-5 col-xl-3">
 
                             <input 
                                 className="form-control me-2 mr-2" 
@@ -43,7 +51,6 @@ const Navbar = () => {
                                 onChange={(event) => searchMovies(event.target.value)}
                                 value={searchValue}
                             />
-                            <button className="btn btn-primary text-light" type="submit">Поиск</button>
                             
                     </form>
                 </div>

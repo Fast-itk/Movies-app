@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from 'react'
 import LoadingPage from '../components/LoadingPage/LoadingPage'
 import Slider from '../components/Slider/Slider'
 import { DetailContext } from '../context/detail/detailContext'
+import keys from '../config/keys'
 
 const DetailPage = ({match}) => {
     const id = match.params.id
@@ -11,7 +12,7 @@ const DetailPage = ({match}) => {
     useEffect(() => {
         getDetailMovie(id)
         // eslint-disable-next-line
-    }, [id])
+    }, [])
 
 
     if (loading) {
@@ -60,7 +61,9 @@ const DetailPage = ({match}) => {
                  <div>
                     <img 
                         className="img-fluid rounded shadow" 
-                        src={`https://image.tmdb.org/t/p/w500${backdrop_path ? backdrop_path : null}`} 
+                        src={backdrop_path 
+                            ? `https://image.tmdb.org/t/p/w500${backdrop_path}` 
+                            : keys.NOT_IMAGE} 
                         alt={title} 
                     />
                  </div>

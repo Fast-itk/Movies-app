@@ -15,9 +15,14 @@ const RandomMovie = () => {
     return (
         <>
             <div className="text-center">
-                <button onClick={random.getRandomMovie} className="btn btn-lg btn-info m-4 ofset-6">Рандомный фильм</button>
+                <button 
+                    onClick={random.getRandomMovie} 
+                    className="btn btn-lg btn-primary m-4 ofset-6"
+                >Рандомный фильм</button>
             </div>
-            <div className={['d-flex', 'align-items-center', 'justify-content-center', cls.sectionHeight].join(' ')} >
+            <div 
+                className={['d-flex', 'align-items-center', 'justify-content-center', cls.sectionHeight].join(' ')}
+            >
             {randomLoading ? <Loading/> : title && genres && overview && poster_path ? 
                 <RandomMovieCard />
             : null}

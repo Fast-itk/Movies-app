@@ -31,6 +31,7 @@ const RandomState = ({children}) => {
             
             const response = await request(`https://api.themoviedb.org/3/movie/${getRandomInRange(5000, 50000)}?api_key=${API_KEY}&language=ru-RU`)
 
+            console.log(response.status)
             const {title, genres, overview, poster_path, id} = response
 
             if (response.status === 404 || (!title || !genres || !overview || !poster_path || !id)) {
