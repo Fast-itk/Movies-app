@@ -4,8 +4,18 @@ export const detailReducer = (state, action) => {
     switch(action.type) {
         case GET_DETAIL_MOVIE: return {
             ...state,
-            detailMovie: action.movieData,
-            person: action.actorsData
+            detailMovie: {
+                backdropPath: action.backdrop_path,
+                title: action.title,
+                budget: action.budget,
+                genres: action.genres,
+                overview: action.overview,
+                releaseDate: action.release_date
+            },
+            person: {
+                cast: action.cast,
+                crew: action.crew
+            }
         } 
         case TOGGLE_LOADER: return {
             ...state,

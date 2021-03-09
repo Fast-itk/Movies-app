@@ -38,7 +38,6 @@ const RandomState = ({children}) => {
                 return getRandomMovie()
             }
 
-
             const overviewInArray = overview.split(' ')
 
             if (overviewInArray.length > 75) {

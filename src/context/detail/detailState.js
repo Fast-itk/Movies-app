@@ -6,11 +6,21 @@ import useFetch from '../../hooks/fetch.hook'
 import keys from '../../config/keys'
 import { GET_DETAIL_MOVIE, TOGGLE_LOADER } from '../types/types'
 
-const DetailState = ({children}) => {
+const DetailState = ({ children }) => {
 
     const initialState = {
-        detailMovie: {},
-        person: {},
+        detailMovie: {
+            backdropPath: '',
+            title: '',
+            budget: '',
+            genres: [],
+            overview: '',
+            releaseDate: ''
+        },
+        person: {
+            cast: [],
+            crew: []
+        },
         loading: false
     }
 
@@ -32,11 +42,11 @@ const DetailState = ({children}) => {
             const actors = await request(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=ru-RU`)
             const {cast, crew} = actors
 
-            const movieData = {backdrop_path, title, budget, genres, overview, release_date}
+            // const actorsData = {cast, crew}
 
-            const actorsData = {cast, crew}
-
-            dispatch({type: GET_DETAIL_MOVIE, movieData, actorsData})
+            dispatch({type: GET_DETAIL_MOVIE, 
+                backdrop_path, title, budget, genres, overview, release_date, cast, crew
+            })
             setLoading(false)
         } catch(e) {
             setLoading(false)

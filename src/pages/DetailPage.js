@@ -23,36 +23,29 @@ const DetailPage = ({match}) => {
         )
     }
 
-    const {title, backdrop_path, budget, genres, overview, release_date} = detailMovie
-
+    const {title, backdropPath, budget, genres, overview, releaseDate} = detailMovie
     const {crew, cast} = person    
 
-    if (crew) {
-        var directing = crew.map((i) => {
-            if (i.job === 'Director') {
-                return i.name
-            } else return null
-        }).join(' ')
-    }
+    const directing = crew.map((i) => {
+        if (i.job === 'Director') {
+            return i.name
+        } else return null
+    }).join(' ')
 
-    if (release_date) {
-       var realiseYear = release_date.split('-')[0]
-    }
+    const realiseYear = releaseDate.split('-')[0]
 
-    if (genres) {
-        var genre = genres.map((g, index) => {
-            return (
-                <span
-                    key={index}
-                    className="text-capitalize"
-                >{ index !== genres.length - 1 
-                    ? g.name + ', '
-                    : g.name  } 
-                </span>
-            )
-        })
-    }
-
+    const genre = genres.map((g, index) => {
+        return (
+            <span
+                key={index}
+                className="text-capitalize"
+            >{ index !== genres.length - 1 
+                ? g.name + ', '
+                : g.name  } 
+            </span>
+        )
+    })
+    
     return (
         <div className="container"> 
              <div className="row pt-4">
@@ -61,8 +54,8 @@ const DetailPage = ({match}) => {
                  <div>
                     <img 
                         className="img-fluid rounded shadow" 
-                        src={backdrop_path 
-                            ? `https://image.tmdb.org/t/p/w500${backdrop_path}` 
+                        src={backdropPath 
+                            ? `https://image.tmdb.org/t/p/w500${backdropPath}` 
                             : keys.NOT_IMAGE} 
                         alt={title} 
                     />
@@ -80,11 +73,7 @@ const DetailPage = ({match}) => {
                  <h3>Описание: </h3>
                  <p>{overview}</p>
              </div>
-            { cast 
-            ? <Slider actorsList={cast} />
-            : null}
-             
-
+            <Slider actorsList={cast} />
         </div>
     )
 }
